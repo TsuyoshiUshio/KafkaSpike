@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProducerSample": {
+      "commandName": "Project",
+      "commandLineArgs": "--broker localhost:9092 --topic message"
+    }
+  }
+}
