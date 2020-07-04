@@ -1,6 +1,7 @@
 ﻿using Confluent.Kafka;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.Threading;
 
 namespace ConsumerSample
@@ -37,7 +38,7 @@ namespace ConsumerSample
                     {
                         var c = consumer.Consume(cts.Token);
                         if(!string.IsNullOrEmpty(c.Message?.Value))
-                            Console.WriteLine($"Consumed record with key {c.Message.Key} and value {c.Message.Value}");
+                            Console.WriteLine($"topic:[{c.Topic}], partition:[{c.Partition.Value}], key:{c.Message.Key}, value:{c.Message.Value}");
                     }
                 } catch (OperationCanceledException)
                 {
