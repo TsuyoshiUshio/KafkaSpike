@@ -9,18 +9,23 @@ namespace KafkaSpike
     {
         static void Main(string broker, string topic, int thread = 2, int iteration = 10)
         {
+            bool validation = true;
             if (string.IsNullOrEmpty(broker))
             {
                 Console.WriteLine("--broker required.");
-                Environment.Exit(1);
-                return;
+                validation = false;
             }
             if (string.IsNullOrEmpty(topic))
             {
                 Console.WriteLine("--topic required.");
+                validation = false;
+            }
+            if (!validation)
+            {
                 Environment.Exit(1);
                 return;
             }
+
             Execute(broker, topic, thread, iteration).GetAwaiter().GetResult();
         }
 
